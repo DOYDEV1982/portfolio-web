@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#006400" />
+  <meta name="description" content="Professional portfolio showcasing services, projects, and background." />
+  <title>Oladoye Jelili Ademola – Portfolio</title>
+  <style>
+    :root{
+      --cream:#FFFDD0;
+      --deep-green:#006400;
+      --deep-green-900:#024d02;
+      --deep-green-700:#0a7a0a;
+      --ink:#1b1f24;
+      --muted:#2a2f36;
+      --card:#ffffff;
+      --shadow:0 10px 25px rgba(0,0,0,.12);
+      --radius:16px;
+    }
+    /* Reset */
+    *,*::before,*::after{box-sizing:border-box}
+    html,body{margin:0;padding:0}
+    body{
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      color:var(--ink);
+      background:linear-gradient(180deg,var(--cream),#fff);
+      line-height:1.6;
+      -webkit-font-smoothing:antialiased;
+    }
+    a{color:inherit}
+    img{max-width:100%;display:block}
+
+    /* Layout helpers */
+    .container{width:min(1100px,92%);margin-inline:auto}
+    .grid{display:grid;gap:1.25rem}
+
+    /* Header / Nav */
+    header{
+      position:sticky;top:0;z-index:20;
+      background:rgba(255,255,255,.8);
+      backdrop-filter: blur(10px);
+      border-bottom:1px solid rgba(0,0,0,.06);
+    }
+    .nav{
+      display:flex;align-items:center;justify-content:space-between;
+      padding:1rem 0;
+    }
+    .brand{display:flex;align-items:center;gap:.75rem;font-weight:800}
+    .brand .logo{
+      width:42px;height:42px;border-radius:10px;
+      background:linear-gradient(135deg,var(--deep-green),var(--deep-green-900));
+      display:grid;place-items:center;color:var(--cream);font-weight:900
+    }
+    .menu{display:flex;gap:1.25rem;align-items:center}
+    .menu a{padding:.45rem .7rem;border-radius:8px;color:var(--muted);text-decoration:none;font-weight:600}
+    .menu a:hover{background:var(--cream);color:var(--deep-green-900)}
+    .hamburger{display:none;border:0;background:transparent;font-size:1.5rem}
+
+    /* Hero */
+    .hero{padding:clamp(2rem,4vw,4rem) 0}
+    .hero-inner{display:grid;gap:2rem;align-items:center;grid-template-columns:1.2fr .8fr}
+    .eyebrow{letter-spacing:.2em;text-transform:uppercase;color:var(--deep-green-700);font-weight:800}
+    h1{font-size:clamp(2rem,4vw,3rem);line-height:1.15;margin:.35rem 0 1rem;color:var(--deep-green-900)}
+    .lede{font-size:clamp(1rem,2.1vw,1.2rem);color:var(--muted)}
+    .cta{display:flex;gap:.8rem;flex-wrap:wrap;margin-top:1.25rem}
+    .btn{--bg:var(--deep-green);--fg:var(--cream);
+      background:var(--bg);color:var(--fg);
+      padding:.85rem 1.1rem;border-radius:12px;border:2px solid transparent;
+      font-weight:800;text-decoration:none;display:inline-flex;gap:.5rem;align-items:center;
+      box-shadow:var(--shadow);transition:.25s transform,.25s box-shadow,.25s background
+    }
+    .btn.secondary{--bg:transparent;--fg:var(--deep-green-900);border-color:var(--deep-green-900)}
+    .btn:hover{transform:translateY(-2px);box-shadow:0 16px 34px rgba(0,0,0,.16)}
+
+    .hero-card{background:var(--card);border-radius:var(--radius);padding:1rem;box-shadow:var(--shadow)}
+
+    /* Sections */
+    section{padding:clamp(2.5rem,4vw,4rem) 0}
+    section h2{font-size:clamp(1.5rem,3vw,2rem);margin:0 0 1rem;color:var(--deep-green-900)}
+    .section-lede{color:var(--muted);margin-top:-.5rem}
+
+    /* Services */
+    .cards{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+    .card{background:var(--card);border-radius:14px;padding:1.2rem;box-shadow:var(--shadow);border:1px solid rgba(0,0,0,.05)}
+    .card h3{margin:.25rem 0 .5rem;color:var(--deep-green-700)}
+    .badge{display:inline-block;background:var(--cream);color:var(--deep-green-900);font-weight:700;border:1px solid rgba(0,0,0,.06);padding:.2rem .5rem;border-radius:999px;font-size:.8rem}
+
+    /* About */
+    .about{grid-template-columns:1fr 1fr;align-items:center}
+    .about .panel{background:var(--card);border-radius:var(--radius);padding:1.25rem;box-shadow:var(--shadow)}
+    .about ul{margin:.5rem 0 0 1rem}
+
+    /* Projects */
+    .projects{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+    .project{background:var(--card);border-radius:14px;overflow:hidden;box-shadow:var(--shadow);display:flex;flex-direction:column}
+    .project img{aspect-ratio:16/10;object-fit:cover}
+    .project .body{padding:1rem}
+    .project .meta{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.5rem}
+
+    /* Testimonials */
+    .testimonials{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+    .quote{background:var(--card);border-left:6px solid var(--deep-green);border-radius:10px;padding:1rem 1.2rem;box-shadow:var(--shadow)}
+
+    /* Contact */
+    .contact{background:linear-gradient(160deg,var(--cream),#fff)}
+    form{display:grid;gap:1rem;grid-template-columns:1fr}
+    input,textarea{padding:0.85rem 1rem;border:1px solid #d7d7d7;border-radius:10px;font-size:1rem}
+    textarea{min-height:140px;resize:vertical}
+    .form-row{display:grid;gap:1rem;grid-template-columns:1fr 1fr}
+    .form-actions{display:flex;gap:.75rem;flex-wrap:wrap}
+
+    /* Footer */
+    footer{background:var(--deep-green-900);color:var(--cream);padding:1.25rem 0;margin-top:2rem}
+    .social{display:flex;gap:.8rem;flex-wrap:wrap}
+    .social a{padding:.35rem .6rem;border-radius:8px;border:1px solid rgba(255,255,255,.25);text-decoration:none}
+
+    /* Responsive */
+    @media (max-width: 900px){
+      .hero-inner{grid-template-columns:1fr}
+      .about{grid-template-columns:1fr}
+      .form-row{grid-template-columns:1fr}
+    }
+
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce){
+      .btn{transition:none}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="container nav" aria-label="Primary">
+      <div class="brand">
+        <div class="logo" aria-hidden="true">OJ</div>
+        <span>Oladoye Jelili Ademola</span>
+      </div>
+      <button class="hamburger" id="hamburger" aria-label="Open menu">☰</button>
+      <div class="menu" id="menu">
+        <a href="#home">Home</a>
+        <a href="#services">Services</a>
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="home" class="hero">
+    <div class="container hero-inner">
+      <div>
+        <div class="eyebrow">Product-minded Engineer • Data-informed</div>
+        <h1>Building reliable, user‑first web apps for real‑world impact.</h1>
+        <p class="lede">I help startups and teams ship delightful, accessible products—fast. From idea to launch: architecture, APIs, dashboards, data visuals, and performance tuning.</p>
+        <div class="cta">
+          <a class="btn" href="#contact">Start a project →</a>
+          <a class="btn secondary" href="#projects">See my work</a>
+        </div>
+      </div>
+      <div class="hero-card">
+        <img src="https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?q=80&w=1200&auto=format&fit=crop" alt="Clean dashboard UI on a laptop" />
+      </div>
+    </div>
+  </main>
+
+  <section id="services">
+    <div class="container">
+      <h2>Services</h2>
+      <p class="section-lede">Focused, high‑leverage workstreams that move the needle.</p>
+      <div class="grid cards">
+        <article class="card">
+          <span class="badge">Strategy</span>
+          <h3>Technical Discovery & Roadmapping</h3>
+          <p>Clarify goals, identify risks, and design an execution plan with milestones and measurable outcomes.</p>
+        </article>
+        <article class="card">
+          <span class="badge">Build</span>
+          <h3>Full‑Stack Web Apps</h3>
+          <p>Modern React front‑ends, robust APIs, and secure auth. Performance budgets and accessibility by default.</p>
+        </article>
+        <article class="card">
+          <span class="badge">Data</span>
+          <h3>Analytics & Visualization</h3>
+          <p>Dashboards that uncover insight: time‑series charts, cohort views, and real‑time market signals.</p>
+        </article>
+        <article class="card">
+          <span class="badge">Quality</span>
+          <h3>Performance & DX Audits</h3>
+          <p>Optimize speed, reliability, and developer experience to scale confidently.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="container grid about">
+      <div class="panel">
+        <h2>About Me</h2>
+        <p>I'm a pragmatic engineer who loves clean architecture and thoughtful UX. I’ve helped teams in finance and startups ship secure, data‑driven products used by thousands of users.</p>
+        <ul>
+          <li>5+ years building React, Node.js, and cloud‑hosted apps</li>
+          <li>Focus on accessibility (WCAG) and performance</li>
+          <li>Strong communication: clear docs & tight feedback loops</li>
+        </ul>
+      </div>
+      <div class="panel">
+        <h2>Toolbox</h2>
+        <p>React, TypeScript, Node, Express, PostgreSQL, MongoDB, Chart.js, Tailwind, Vite, GitHub Actions, Docker.</p>
+        <p class="section-lede">I pick tools to fit the problem—not the other way around.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="container">
+      <h2>Selected Projects</h2>
+      <p class="section-lede">A few recent builds. More available on request.</p>
+      <div class="grid projects">
+        <article class="project">
+          <img src="https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?q=80&w=1200&auto=format&fit=crop" alt="Analytics dashboard" />
+          <div class="body">
+            <h3>Global Markets Dashboard</h3>
+            <p>Real‑time FX and equities overview with alerts and portfolio insights.</p>
+            <div class="meta">
+              <span class="badge">React</span>
+              <span class="badge">Chart.js</span>
+              <span class="badge">Node</span>
+            </div>
+          </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <h2>Testimonials</h2>
+      <div class="grid testimonials">
+        <figure class="quote">
+          <blockquote>“Clear thinker, fast shipper, and a great partner for non‑technical founders.”</blockquote>
+          <figcaption>— O.J Ademola, Startup CEO</figcaption>
+        </figure>
+        <figure class="quote">
+          <blockquote>“Transformed our legacy app into a responsive, maintainable product.”</blockquote>
+          <figcaption>— O.J Ademola, Product Lead</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact">
+    <div class="container">
+      <h2>Let’s build something great</h2>
+      <p class="section-lede">Tell me about your goals. I’ll reply within 1–2 business days.</p>
+      <form name="contact" onsubmit="event.preventDefault(); alert('Thanks! I\'ll get back to you shortly.'); this.reset();">
+        <div class="form-row">
+          <input type="text" name="name" placeholder="Your name" required aria-label="Your name" />
+          <input type="email" name="email" placeholder="Email" required aria-label="Email" />
+        </div>
+        <input type="text" name="company" placeholder="Company (optional)" aria-label="Company" />
+        <textarea name="message" placeholder="Project details, timeline, budget…" required aria-label="Message"></textarea>
+        <div class="form-actions">
+          <button class="btn" type="submit">Send message</button>
+          <a class="btn secondary" href="mailto:oladoyejelili@yahoo.com">Email me directly</a>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container" style="display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap">
+      <small>© 2025 Oladoye Jelili Ademola. All rights reserved.</small>
+      <div class="social">
+        <a href="https://github.com/DOYDEV1982" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://www.linkedin.com/in/oladoye-jelili-921b3915a" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://www.instagram.com/ademola_adeniyi" target="_blank" rel="noopener">Instagram</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Simple mobile menu toggle
+    const hamburger = document.getElementById('hamburger');
+    const menu = document.getElementById('menu');
+    function syncMenu(){
+      if (window.matchMedia('(max-width: 720px)').matches){
+        hamburger.style.display = 'block';
+        menu.style.display = 'none';
+      } else {
+        hamburger.style.display = 'none';
+        menu.style.display = 'flex';
+      }
+    }
+    hamburger.addEventListener('click',()=>{
+      menu.style.display = menu.style.display === 'none' ? 'flex' : 'none';
+    });
+    window.addEventListener('resize', syncMenu);
+    window.addEventListener('load', syncMenu);
+  </script>
+  </body>
+</html>
